@@ -134,8 +134,9 @@ if($pPS === FALSE){
  * -------------------------------------------------
  */
 
-
-file_put_contents( $ps_dump, $pResult );
+$psWrite = file_put_contents( $ps_dump, $pResult );
+if ( $psWrite === false ) {
+	echo $log.'ps dump write failed';
+}
 
 echo $log.'Cronjob done. Time is: '.date('Y-m-d H:i:s')."\n";
-?>
