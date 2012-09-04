@@ -80,6 +80,7 @@ switch( $s['action'] ){
 			$fCmd = fopen($c['commands_queue'], 'a'); // Open the commands queue
 			flock($fCmd, LOCK_EX);  // Lock the file exclusively
 			fwrite($fCmd, "\n" . "start|" . $shell_chdir . "|" . $shell_exec);
+			flock($fCmd, LOCK_UN);
 			fclose($fCmd); // Close and release the file
 
 			// Report back to frontend
@@ -112,6 +113,7 @@ switch( $s['action'] ){
 				$fCmd = fopen($c['commands_queue'], 'a'); // Open the commands queue
 				flock($fCmd, LOCK_EX);  // Lock the file exclusively
 				fwrite($fCmd, "\n" . "kill|" . $shell_exec);
+				flock($fCmd, LOCK_UN);
 				fclose($fCmd); // Close and release the file
 
 				// Report back to frontend
@@ -143,6 +145,7 @@ switch( $s['action'] ){
 			foreach ( $shell_execes as $shell_exec ) {
 				fwrite($fCmd, "\n" . "kill|" . $shell_exec);
 			}
+			flock($fCmd, LOCK_UN);
 			fclose($fCmd); // Close and release the file
 
 			// Report back to frontend

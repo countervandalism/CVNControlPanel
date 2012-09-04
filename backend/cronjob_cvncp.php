@@ -65,6 +65,7 @@ if( $fCmd !== FALSE ){ // Avoid infinite loop through while(!feof)
 	}
 	ftruncate($fCmd,0); // Truncate it to zero
 	echo $log.'Commands file lock, read and truncated';
+	flock($fCmd, LOCK_UN);
 	fclose($fCmd); // Close and unlock the file
 	echo $log.'Commands file close/unlock';
 
@@ -134,18 +135,7 @@ if($pPS === FALSE){
  */
 
 
-$fPS = fopen($ps_dump,'w+'); // Read the ps_dump
+file_put_contents( $ps_dump, $pResult );
 
-// Avoid problems
-if($fPS === FALSE){
-	echo $log.'Could not open PS dump';
-} else {	
-	echo $log.'PS dump open';
-	flock($fPS, LOCK_EX); // Lock the file exclusively
-	fwrite($fPS,$pResult);
-	echo $log.'PS dump lock and overwrite';
-	fclose($fPS); // Close and release the file
-	echo $log.'PS dump close/unlock';
-}
 echo $log.'Cronjob done. Time is: '.date('Y-m-d H:i:s')."\n";
 ?>

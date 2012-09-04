@@ -119,6 +119,7 @@ function getServicesStatus() {
 			}
 		}
 	}
+	flock($fPS, LOCK_UN);
 	fclose($fPS); // Close and release the file
 }
 
