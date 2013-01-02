@@ -96,7 +96,7 @@ if( !empty($start_cmds) ){
 	echo $log.'Executing '.count($start_cmds). ' start command(s)';
 	foreach($start_cmds as $start_cmd){
 		chdir($start_cmd['chdir']);
-		exec($start_cmd['exec']);
+		exec($start_cmd['exec'] . ' &');
 		sleep(1);
 	}
 
