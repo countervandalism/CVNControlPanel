@@ -1,4 +1,0 @@
-backend/cronjob_cvncp.log
-backend/commands_queue.txt
-backend/ps_dump.txt
-public_html/logs/*.log

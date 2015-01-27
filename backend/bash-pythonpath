@@ -1,2 +1,0 @@
-export PYTHONPATH=/home/project/c/v/n/cvn/local/lib/python2.7/site-packages:$PYTHONPATH
-export PYTHONPATH=/home/project/c/v/n/cvn/externals/pywikipedia:$PYTHONPATH
